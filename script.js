@@ -1,5 +1,5 @@
 const prompt = require('prompt-sync')();
-let isRunning = true
+let choix = 2
 const trips = [
     {
         id: 1,
@@ -196,7 +196,7 @@ do {
     console.log("6. Filtrer les trajets")
     console.log("7. Trier les trajets")
     console.log("0.Quitter")
-    let choix = parseInt(prompt("ecrit votre choix : "))
+    choix = parseInt(prompt("ecrit votre choix : "))
     switch (choix) {
         case 1:
           afficherTrajet();
@@ -217,13 +217,12 @@ do {
             break;
         case 0:
         console.log("-- au revoir --")
-        isRunning = false
             break
             default:
                 break
     }
-}while(isRunning == true);
-
+}while(choix != 0);
+    
 function afficherTrajet() {
         console.log("\n\n=== TRAJETS DISPONIBLES ===")
         for (let i = 0; i < trips.length; i++) {
