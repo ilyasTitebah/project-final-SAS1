@@ -1,5 +1,5 @@
 const prompt = require('prompt-sync')();
-
+let isRunning = true
 const trips = [
     {
         id: 1,
@@ -185,7 +185,6 @@ const trips = [
 
 
 do {
-    let choix = parseInt(prompt("votre choix : "))
     console.log("=================================")
     console.log("        RAILWAY MANAGER          ")
     console.log("=================================")
@@ -197,9 +196,10 @@ do {
     console.log("6. Filtrer les trajets")
     console.log("7. Trier les trajets")
     console.log("0.Quitter")
+    let choix = parseInt(prompt("ecrit votre choix : "))
     switch (choix) {
         case 1:
-            afficherTrajet();
+          afficherTrajet();
             break;
         case 2:
           acheterTickets() 
@@ -216,14 +216,16 @@ do {
         case 7:
             break;
         case 0:
-            break;
+        console.log("-- au revoir --")
+        isRunning = false
+            break
             default:
-                console.log
+                break
     }
-}while(choix!= 0);
+}while(isRunning == true);
 
 function afficherTrajet() {
-        console.log("=== TRAJETS DISPONIBLES ===")
+        console.log("\n\n=== TRAJETS DISPONIBLES ===")
         for (let i = 0; i < trips.length; i++) {
             console.log(`#${trips[i].id} ${trips[i].departure} --> ${trips[i].destination}`)
             console.log(`depart: ${trips[i].departureTime}`)
@@ -232,6 +234,8 @@ function afficherTrajet() {
             console.log(`available sets: ${trips[i].availableSeats}`)
             console.log(`---------------------------`)
         }
+        console.log("\n=================================")
+
     }
   const Ticket = []  ;
 function acheterTickets() {
@@ -246,9 +250,6 @@ function trierTrajets() {
     for (let i = 0; i < trips.length; i++) {
         for (let j = 0; i < trips.length - 1 - i; j++) {
             if (trips[j].price < trips[j + 1].price) {
-                // temp=a 
-                // a=b 
-                // b=temp
                 temp = trips[j].price;
                 trips[j].price = trips[j + 1].price;
                 trips[j + 1].price = temp;
