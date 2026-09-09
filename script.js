@@ -238,14 +238,16 @@ function afficherTrajet() {
     }
   const Ticket = []  ;
 function acheterTickets() {
-    let passengerName;  // input
-    let tId = 82882;
+    let passengerName = prompt("ecrit ton nom : ")
+    let tId = parseInt(prompt("ecrit l'Id du trajet : "));
     let found = false
+    let trip;
 
 
     for(let i = 0 ; i < trips.length ; i++) {
         if(trips[i].id == tId) {
             found = true
+            trip = trips[i]
             break
         } 
     }
@@ -253,7 +255,12 @@ function acheterTickets() {
     if(found == false) {
         console.log("trajet not found")
     } else {
-        console.log("we found it ")
+        if(trip.availableSeats>=1){
+            console.log("seat found")
+        }
+        else{
+            console.log("there's no seats available!")
+        }
     }
 }
 
