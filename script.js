@@ -238,10 +238,23 @@ function afficherTrajet() {
     }
   const Ticket = []  ;
 function acheterTickets() {
-    let passengerName = 
-    console.log(prompt("Nom du passager : "))
-    console.log(parseInt(prompt("Identifiant du trajet : ")))
-    trips.find()
+    let passengerName;  // input
+    let tId = 82882;
+    let found = false
+
+
+    for(let i = 0 ; i < trips.length ; i++) {
+        if(trips[i].id == tId) {
+            found = true
+            break
+        } 
+    }
+
+    if(found == false) {
+        console.log("trajet not found")
+    } else {
+        console.log("we found it ")
+    }
 }
 
 function trierTrajets() {
