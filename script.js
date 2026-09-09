@@ -262,6 +262,8 @@ function acheterTickets() {
             console.log("there's no seats available!")
         }
     }
+    console.log(`id: ${trip.id}`)
+    console.log(`passengerName: ${passengerName}`)
 }
 
 function trierTrajets() {
