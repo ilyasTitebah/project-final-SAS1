@@ -1,5 +1,5 @@
 const prompt = require('prompt-sync')();
-let choix;
+
 const trips = [
     {
         id: 1,
@@ -199,7 +199,7 @@ do {
     choix = parseInt(prompt("ecrit votre choix : "))
     switch (choix) {
         case 1:
-            afficherTrajet();
+          afficherTrajet();
             break;
         case 2:
             acheterTickets()
@@ -216,141 +216,30 @@ do {
             trierTrajets()
             break;
         case 0:
-            console.log("-- au revoir --")
             break;
-        default:
-            console.log("entrer un nombre valid!")
-            break;
+            default:
+                console.log
     }
-} while (choix != 0);
+}while(choix!= 0);
 
 function afficherTrajet() {
-    console.log("\n\n=== TRAJETS DISPONIBLES ===")
-    for (let i = 0; i < trips.length; i++) {
-        console.log(`#${trips[i].id} ${trips[i].departure} --> ${trips[i].destination}`)
-        console.log(`depart: ${trips[i].departureTime}`)
-        console.log(`arrivee: ${trips[i].arrivalTime}`)
-        console.log(`prix: ${trips[i].price} DH`)
-        console.log(`available sets: ${trips[i].availableSeats}`)
-        console.log(`---------------------------`)
+        console.log("=== TRAJETS DISPONIBLES ===")
+        for (let i = 0; i < trips.length; i++) {
+            console.log(`#${trips[i].id} ${trips[i].departure} --> ${trips[i].destination}`)
+            console.log(`depart: ${trips[i].departureTime}`)
+            console.log(`arrivee: ${trips[i].arrivalTime}`)
+            console.log(`prix: ${trips[i].price} DH`)
+            console.log(`available sets: ${trips[i].availableSeats}`)
+            console.log(`---------------------------`)
+        }
     }
-    console.log("\n=================================")
-
-}
-const tickets = [];
+  const Ticket = []  ;
 function acheterTickets() {
-    // let passengerName = prompt("ecrit ton nom : ");
-    // let tId = parseInt(prompt("ecrit l'Id du trajet : "));
-    // let found = false;
-    // let ticketContent = [];
-    // let seatNumber ; 
-    // let trip;
-    //function acheterTickets() {
-
-    // // 1. Demander les informations
-    let passengerName = prompt("ecrit ton nom : ")
-    let tId = parseInt(prompt("ecrit l'Id du trajet : "))
-    let foun = false
-    let trip;
-    let seatNumber = 1;
-    // let passengerName = prompt("Ecrit ton nom : ");
-    // let tId = parseInt(prompt("Ecrit l'ID du trajet : "));
-    // let found = false;
-    // let trip;
-    // let seatNumber = 1;
-
-    // // 2. Rechercher le trajet
-    for (let i = 0; i < trips.length; i++) {
-        if (trips[i].id == tId) {
-            found = true;
-            trip = trips[i];
-            break;
-        }
-    }
-    // for (let i = 0; i < trips.length; i++) {
-
-    //     if (trips[i].id == tId) {
-    //         found = true;
-    //         trip = trips[i];
-    //         break;
-    //     }
-    // }
-
-    // // 3. Vérifier si le trajet existe
-    if (found == false) {
-        console.log("trajet introuvable.");
-        return;
-    }
-    // if (found == false) {
-    //     console.log("Trajet introuvable.");
-    //     return;
-    // }
-
-    // // 4. Vérifier s'il reste des places
-    if (trip.availableSeats == 0) {
-        console.log("train complet.");
-        return;
-    }
-    // if (trip.availableSeats == 0) {
-    //     console.log("Train complet.");
-    //     return;
-    // }
-
-    // // 5. Trouver automatiquement le numéro de place
-    for (let i = 0; i < tickets.length; i++) {
-        if (tickets[i].tripId == tId) {
-            seatNumber++;
-        }
-    }
-    // for (let i = 0; i < tickets.length; i++) {
-
-    //     if (tickets[i].tripId == tId) {
-    //         seatNumber++;
-    //     }
-    // }
-
-    // // 6. Créer le ticket
-    let ticket = {
-        id: tickets.length + 1,
-        passengerName: passengerName,
-        tripId: tId,
-        seatNumber: seatNumber,
-        price: trip.price
-    };
-    // let ticket = {
-    //     id: tickets.length + 1,
-    //     passengerName: passengerName,
-    //     tripId: tId,
-    //     seatNumber: seatNumber,
-    //     price: trip.price
-    // };
-
-    // // 7. Ajouter le ticket au tableau tickets
-    ticket.push(tickets);
-    // tickets.push(ticket);
-
-    // // 8. Diminuer les places disponibles
-    trips.availableSeats--;
-    // trip.availableSeats--;
-
-    // // 9. Afficher le résultat
-    console.log("ticket achete avec succes.");
-    console.log(`ticket #${ticket.id}`)
-    console.log(`passager : ${ticket.passengerName}`)
-    console.log(`trajet : ${trip.departureTime} -> ${trip.arrivalTime}`)
-    console.log(`place : ${ticket.seatNumber}`);
-    console.log(`prix : ${ticket.price} DH`);
-    // console.log("Ticket acheté avec succès.");
-    // console.log(`Ticket #${ticket.id}`);
-    // console.log(`Passager : ${ticket.passengerName}`);
-    // console.log(`Trajet : ${trip.departure} → ${trip.arrival}`);
-    // console.log(`Place : ${ticket.seatNumber}`);
-    // console.log(`Prix : ${ticket.price} DH`);
-};
-
-
-     
-
+    let passengerName = 
+    console.log(prompt("Nom du passager : "))
+    console.log(parseInt(prompt("Identifiant du trajet : ")))
+    trips.find()
+}
 
 function trierTrajets() {
     let temp = 0;
