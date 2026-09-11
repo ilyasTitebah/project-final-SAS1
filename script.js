@@ -1,6 +1,7 @@
-const prompt = require("prompt-sync")();
+const prompt = require ('prompt-sync')();
 const tickets = [];
 let choix;
+let ticketid = 0
 const trips = [
     {
         id: 1,
@@ -215,6 +216,7 @@ do {
             RechercherTicket();
             break;
         case 6:
+            filtrerTrajet();
             break;
         case 7:
             trierTrajets();
@@ -281,7 +283,7 @@ function acheterTickets() {
 
     // // 6. Creer le ticket
     let ticket = {
-        id: tickets.length + 1,
+        id: ticketid,
         passengerName: passengerName,
         tripId: tId,
         seatNumber: seatNumber,
@@ -343,15 +345,28 @@ function annulerTicket() {
 }
 
 function RechercherTicket() {
-    let name = console.log(prompt("ecrit ton nom de ton tikcet : "))
-    // for(let i = 0; i<tickets[i].passengerName; i++){
-        for(let ticket of tickets){
-        if(name == tickets.passengerName){
-        console.log(`Ticket #${tickets.id}`)
-        console.log(`Passager :${tickets.passengerName}`)
-        console.log(`Trajet :${}-->$`)
-    }
-
+    // 1. demander le nom du passager
+    let name = prompt("entre name : ")
+    if (tickets.length == 0)
+      console.log("auccun tickets")
+    else 
+      for (let i = 0 ; i < tickets.length; i++){
+          if (tickets[i].passengerName == name){
+          console.log(tickets)
+        }
+      }
+}
+function filtrerTrajet(){
+  let found= false
+  let ville = prompt("ecrit la ville de depart : ")
+  for(let i = 0; i<trips.length ; i++){
+      if (ville.toLowerCase() == trips[i].departure.toLowerCase()){
+        found = true
+       console.log(`${trips[i].departure}-->${trips[i].destination} ${trips[i].price} `) 
+      }
+  }
+  if (found == false)
+    console.log("ville not found!")
 }
 
 function trierTrajets() {
