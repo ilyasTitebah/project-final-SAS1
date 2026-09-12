@@ -1,7 +1,7 @@
 const prompt = require ('prompt-sync')();
 const tickets = [];
 let choix;
-let ticketid = 0
+let ticketid = 1 ;
 const trips = [
     {
         id: 1,
@@ -293,6 +293,7 @@ function acheterTickets() {
     trip.availableSeats--;
 
     tickets.push(ticket);
+    ticketid++;
 
     // // 9. Afficher le resultat
     console.log("\n\nticket achete avec succes.");
@@ -340,29 +341,33 @@ function annulerTicket() {
             if (trips[j].id === foundTicket.tripId) {
                 trips[j].availableSeats++;
             }
+           
         }
+         console.log("Ticket annulé avec succès.");
     }
 }
 
 function RechercherTicket() {
-    // 1. demander le nom du passager
-    let name = prompt("entre name : ")
-    if (tickets.length == 0)
-      console.log("auccun tickets")
-    else 
-      for (let i = 0 ; i < tickets.length; i++){
-          if (tickets[i].passengerName == name){
-          console.log(tickets)
+    let name = prompt("Nom du passager : ");
+    let found = false;
+    for (let i = 0; i < tickets.length; i++) {
+        if (tickets[i].passengerName == name) {
+            found = true;
+            console.log(tickets[i]);
         }
-      }
+    }
+    if (found == false) {
+        console.log("Aucun ticket trouvé pour ce passager.");
+    }
 }
+
 function filtrerTrajet(){
   let found= false
   let ville = prompt("ecrit la ville de depart : ")
   for(let i = 0; i<trips.length ; i++){
       if (ville.toLowerCase() == trips[i].departure.toLowerCase()){
         found = true
-       console.log(`${trips[i].departure}-->${trips[i].destination} ${trips[i].price} `) 
+       console.log(`${trips[i].departure}-->${trips[i].destination}, price: ${trips[i].price} `) 
       }
   }
   if (found == false)
@@ -373,12 +378,15 @@ function trierTrajets() {
     let temp = 0;
     for (let i = 0; i < trips.length; i++) {
         for (let j = 0; j < trips.length - 1 - i; j++) {
-            if (trips[j].price < trips[j + 1].price) {
-                temp = trips[j].price;
-                trips[j].price = trips[j + 1].price;
-                trips[j + 1].price = temp;
+            if (trips[j].price > trips[j + 1].price) {
+                temp = trips[j];
+                trips[j] = trips[j + 1];
+                trips[j + 1] = temp;
             }
         }
     }
-    console.log(trips);
+
+    for (let i = 0; i < trips.length; i++) {
+        console.log(`${trips[i].departure} --> ${trips[i].destination} : ${trips[i].price} DH`);
+    }
 }
