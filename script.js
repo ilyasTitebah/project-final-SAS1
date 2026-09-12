@@ -246,14 +246,12 @@ function afficherTrajet() {
 }
 
 function acheterTickets() {
-    // // 1. Demander les informations
     let passengerName = prompt("ecrit ton nom : ");
     let tId = parseInt(prompt("ecrit l'Id du trajet : "));
     let found = false;
     let trip;
     let seatNumber = 1;
 
-    // // 2. Rechercher le trajet
     for (let i = 0; i < trips.length; i++) {
         if (trips[i].id == tId) {
             found = true;
@@ -262,26 +260,22 @@ function acheterTickets() {
         }
     }
 
-    // // 3. Verifier si le trajet existe
     if (found == false) {
         console.log("trajet introuvable.");
         return;
     }
 
-    // // 4. Verifier s il reste des places
     if (trip.availableSeats == 0) {
         console.log("train complet.");
         return;
     }
 
-    // // 5. Trouver automatiquement le numero de place
     for (let i = 0; i < tickets.length; i++) {
         if (tickets[i].tripId == tId) {
             seatNumber++;
         }
     }
 
-    // // 6. Creer le ticket
     let ticket = {
         id: ticketid,
         passengerName: passengerName,
@@ -295,7 +289,6 @@ function acheterTickets() {
     tickets.push(ticket);
     ticketid++;
 
-    // // 9. Afficher le resultat
     console.log("\n\nticket achete avec succes.");
     console.log(`ticket #${ticket.id}`);
     console.log(`passager : ${ticket.passengerName}`);
@@ -305,7 +298,7 @@ function acheterTickets() {
 }
 
 function AfficherTickets() {
-    if (tickets.length) {
+    if (tickets.length > 0) {
         for (let i = 0; i < tickets.length; i++) {
             console.log(`ticket #${tickets[i].id}`);
             console.log(`passager : ${tickets[i].passengerName}`);
